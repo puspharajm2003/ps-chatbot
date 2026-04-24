@@ -1,6 +1,7 @@
-import React, { useRef, useMemo } from 'react';
+import { useRef, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
+import { useLocation } from 'react-router-dom';
 import * as THREE from 'three';
 
 function ParticleSwarm({ count = 2000 }) {
@@ -48,6 +49,12 @@ function ParticleSwarm({ count = 2000 }) {
 }
 
 export default function Background3D() {
+  const location = useLocation();
+
+  if (location.pathname === '/') {
+    return null;
+  }
+
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, background: 'radial-gradient(circle at center, #111 0%, #050505 100%)' }}>
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>

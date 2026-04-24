@@ -8,7 +8,6 @@
   color: white;
 }
 
-/* Left Panel - Marketing */
 .auth-left-panel {
   flex: 1;
   position: relative;
@@ -16,7 +15,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(circle at center, #1a1a24 0%, #050505 100%);
+  background: radial-gradient(circle at center, #ffffff 0%, #eff3fb 55%, #dde3f0 100%);
 }
 
 .auth-hero-content {
@@ -39,14 +38,14 @@
 
 .hero-title-bg {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+  -webkit-text-stroke: 1px rgba(13, 31, 52, 0.12);
   top: 20%;
   left: 15%;
   z-index: 1;
 }
 
 .hero-title-fg {
-  color: #fff;
+  color: #0f1e33;
   top: 40%;
   right: 10%;
   z-index: 3;
@@ -61,28 +60,40 @@
   filter: drop-shadow(0 0 50px rgba(0,0,0,0.5));
 }
 
-/* Floating Widgets */
+.hero-robot-3d {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-robot-3d canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .widget {
   position: absolute;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.45);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(14, 33, 53, 0.08);
   padding: 16px 24px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   z-index: 4;
+  box-shadow: 0 18px 40px rgba(74, 101, 139, 0.08);
 }
 
 .widget-val {
   font-size: 20px;
   font-weight: 600;
-  color: #fff;
+  color: #0f1e33;
 }
 
 .widget-label {
   font-size: 12px;
-  color: #a1a1aa;
+  color: #64748b;
 }
 
 .widget-hours {
@@ -95,7 +106,6 @@
   top: 50%;
 }
 
-/* Review Cards */
 .review-cards {
   position: absolute;
   bottom: 40px;
@@ -110,12 +120,13 @@
 
 .review-card {
   flex: 1;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.4);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(14, 33, 53, 0.08);
   border-radius: 24px;
   padding: 20px;
   position: relative;
+  box-shadow: 0 18px 40px rgba(74, 101, 139, 0.08);
 }
 
 .review-header {
@@ -128,29 +139,31 @@
 .review-avatar {
   width: 32px;
   height: 32px;
-  background: #333;
+  background: #d9e3f2;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   font-weight: 600;
+  color: #0f1e33;
 }
 
 .review-card h4 {
   font-size: 14px;
   margin: 0;
+  color: #0f1e33;
 }
 
 .review-card p {
   font-size: 11px;
-  color: #a1a1aa;
+  color: #64748b;
   margin: 0;
 }
 
 .review-text {
   font-size: 14px;
-  color: #fff;
+  color: #0f1e33 !important;
 }
 
 .review-arrow {
@@ -159,8 +172,8 @@
   right: 20px;
   width: 32px;
   height: 32px;
-  background: #fff;
-  color: #000;
+  background: #0f1e33;
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -168,10 +181,9 @@
   font-weight: bold;
 }
 
-/* Right Panel - Form */
 .auth-right-panel {
   width: 500px;
-  background: #23252a; /* Slightly lighter gray */
+  background: #23252a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -341,11 +353,11 @@
   cursor: not-allowed;
 }
 
-/* Responsive Overrides */
 @media (max-width: 1024px) {
   .auth-left-panel {
     display: none;
   }
+
   .auth-right-panel {
     width: 100%;
     background: radial-gradient(circle at center, #1a1a24 0%, #050505 100%);

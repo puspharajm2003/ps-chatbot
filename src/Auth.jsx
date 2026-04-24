@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Apple } from 'lucide-react';
 import gsap from 'gsap';
+import RobotHeroScene from './3d-models/RobotHeroScene';
 import './Auth.css';
 
 // Simple Google icon component since it's not in lucide by default
@@ -94,7 +95,7 @@ export default function Auth({ setAuth }) {
         <div className="auth-hero-content auth-image-anim">
           <h1 className="hero-title-bg">Your AI</h1>
           <h1 className="hero-title-fg">Assistant</h1>
-          <img src="/robot.png" alt="AI Robot" className="hero-robot-img" />
+          <RobotHeroScene />
 
           {/* Floating Widgets */}
           <div className="widget widget-hours">
