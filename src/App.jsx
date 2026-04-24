@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Auth from './Auth';
 import Chat from './Chat';
@@ -9,8 +9,18 @@ import BottomNav from './BottomNav';
 import './App.css';
 
 export default function App() {
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState(() => {
+    const saved = localStorage.getItem('ps_auth');
+    return saved ? JSON.parse(saved) : null;
+  });
 
+  useEffect(() => {
+    if (auth) {
+      localStorage.setItem('ps_auth', JSON.stringify(auth));
+    } else {
+      localStorage.removeItem('ps_auth');
+    }
+  }, [auth]);
   return (
     <Router>
       <Background3D />

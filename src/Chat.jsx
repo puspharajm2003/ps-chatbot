@@ -24,13 +24,6 @@ const PERSONALITIES = [
   { id: 'humorous', name: 'Humorous', icon: Smile },
 ];
 
-const MOCK_HISTORY = [
-  { id: 1, title: 'Luxury Brand Strategy' },
-  { id: 2, title: 'Real Estate Video Script' },
-  { id: 3, title: 'Generate UI Mockup' },
-  { id: 4, title: 'Quantum Physics Explained' }
-];
-
 export default function Chat({ auth }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
@@ -145,7 +138,9 @@ export default function Chat({ auth }) {
           },
           body: JSON.stringify({
             model: selectedModel.id,
-            messages: newMessages.map(m => ({ role: m.role === 'ai' ? 'assistant' : 'user', content: m.content }))
+            messages: newMessages
+              .filter(m => m.id !== 1) // Remove initial welcome message to prevent sequence errors
+              .map(m => ({ role: m.role === 'ai' ? 'assistant' : 'user', content: m.content }))
           })
         });
 
@@ -200,16 +195,6 @@ export default function Chat({ auth }) {
           <h1><Sparkles className="brand-icon" size={28} /> PS Chatbot</h1>
         </div>
 
-        <div className="sidebar-section">
-          <div className="section-title">Recent Intelligence</div>
-          {MOCK_HISTORY.map(item => (
-            <div key={item.id} className="history-item">
-              <MessageSquare size={16} />
-              <span>{item.title}</span>
-            </div>
-          ))}
-        </div>
-
         <div className="user-profile">
           <div className="user-card">
             <div className="avatar">
@@ -229,16 +214,9 @@ export default function Chat({ auth }) {
         {/* Top Navigation Controls */}
         <div className="top-nav">
           <button 
-            className="btn-icon md:hidden" 
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            style={{ display: window.innerWidth <= 768 ? 'flex' : 'none' }}
-          >
-            {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-          <button 
             className="btn-icon" 
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            style={{ display: window.innerWidth > 768 ? 'flex' : 'none' }}
+            style={{ display: 'none' }} // Hidden as we only need it if we have a sidebar
           >
              <Menu size={24} />
           </button>
