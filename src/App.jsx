@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Auth from './Auth';
 import Chat from './Chat';
 import Profile from './Profile';
+import SettingsView from './SettingsView';
+import Background3D from './Background3D';
+import BottomNav from './BottomNav';
 import './App.css';
 
 export default function App() {
@@ -10,6 +13,7 @@ export default function App() {
 
   return (
     <Router>
+      <Background3D />
       <Routes>
         <Route 
           path="/" 
@@ -23,7 +27,12 @@ export default function App() {
           path="/profile" 
           element={auth ? <Profile auth={auth} setAuth={setAuth} /> : <Navigate to="/" />} 
         />
+        <Route 
+          path="/settings" 
+          element={auth ? <SettingsView auth={auth} /> : <Navigate to="/" />} 
+        />
       </Routes>
+      {auth && <BottomNav />}
     </Router>
   );
 }

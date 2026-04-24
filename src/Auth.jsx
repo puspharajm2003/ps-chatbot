@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Lock, Mail, User, Sparkles } from 'lucide-react';
+import gsap from 'gsap';
 import './Auth.css';
 
 export default function Auth({ setAuth }) {
@@ -13,6 +14,17 @@ export default function Auth({ setAuth }) {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const authRef = React.useRef();
+
+  React.useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo('.auth-anim', 
+        { opacity: 0, y: 30, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.15, ease: "power4.out" }
+      );
+    }, authRef);
+    return () => ctx.revert();
+  }, [isLogin]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,19 +66,14 @@ export default function Auth({ setAuth }) {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-brand">
+    <div className="auth-container" style={{ background: 'transparent' }} ref={authRef}>
+      <div className="auth-brand auth-anim">
         <img src="/logo.png" alt="PS Chatbot Logo" className="auth-logo" />
         <h2>PS Chatbot</h2>
         <p>The Pinnacle of Luxury Intelligence</p>
       </div>
 
-      <motion.div 
-        className="auth-card glass-panel"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="auth-card glass-panel auth-anim">
         <h3>{isLogin ? 'Welcome Back' : 'Create Account'}</h3>
         <p className="auth-subtitle">
           {isLogin ? 'Enter your credentials to access your intelligence suite.' : 'Join the elite echelon of AI users.'}
@@ -115,7 +122,7 @@ export default function Auth({ setAuth }) {
             {isLogin ? 'Sign Up' : 'Sign In'}
           </button>
         </p>
-      </motion.div>
+      </div>
     </div>
   );
 }

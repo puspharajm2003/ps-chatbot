@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, User, Lock, Key, Save } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
 
 export default function Profile({ auth, setAuth }) {
   const navigate = useNavigate();
@@ -10,6 +11,17 @@ export default function Profile({ auth, setAuth }) {
   const [apiKey, setApiKey] = useState(auth?.api_key || '');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const profileRef = useRef();
+
+  React.useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo(".prof-anim", 
+        { opacity: 0, y: 30, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.1, ease: "power4.out" }
+      );
+    }, profileRef);
+    return () => ctx.revert();
+  }, []);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -50,21 +62,19 @@ export default function Profile({ auth, setAuth }) {
   };
 
   return (
-    <div className="auth-container" style={{ position: 'relative' }}>
+    <div className="auth-container" style={{ position: 'relative', background: 'transparent' }} ref={profileRef}>
       <button 
         onClick={() => navigate('/chat')} 
-        className="btn-glass"
-        style={{ position: 'absolute', top: 32, left: 32, display: 'flex', alignItems: 'center', gap: 8 }}
+        className="btn-glass prof-anim"
+        style={{ position: 'absolute', top: 32, left: 32, display: 'flex', alignItems: 'center', gap: 8, zIndex: 10 }}
       >
-        <ArrowLeft size={16} /> Back to Chat
+        <ArrowLeft size={16} /> Back to Hub
       </button>
 
-      <motion.div 
-        className="auth-card glass-panel"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+      <div 
+        className="auth-card glass-panel prof-anim"
       >
-        <h3 style={{ marginBottom: 24, fontSize: 28, color: 'var(--accent-gold)' }}>Profile & Settings</h3>
+        <h3 className="text-gradient" style={{ marginBottom: 24, fontSize: 32, letterSpacing: '-0.02em' }}>Identity Management</h3>
         
         {message && (
           <div style={{ padding: 12, marginBottom: 20, borderRadius: 8, background: message.includes('success') ? 'rgba(0, 255, 0, 0.1)' : 'rgba(255, 0, 0, 0.1)', color: message.includes('success') ? '#4ade80' : '#f87171', fontSize: 14 }}>
@@ -108,11 +118,11 @@ export default function Profile({ auth, setAuth }) {
           </div>
           <p style={{ fontSize: 11, color: 'var(--text-tertiary)', marginLeft: 8 }}>This key securely saves to your account and authenticates Free Text Models.</p>
 
-          <button type="submit" className="btn-primary w-full mt-4" disabled={loading || auth?.type === 'guest'} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-            <Save size={18} /> {loading ? 'Saving...' : 'Save Profile'}
+          <button type="submit" className="btn-primary w-full mt-4" disabled={loading || auth?.type === 'guest'} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, height: 48 }}>
+            <Save size={18} /> {loading ? 'Committing...' : 'Synchronize Identity'}
           </button>
         </form>
-      </motion.div>
+      </div>
     </div>
   );
 }
