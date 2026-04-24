@@ -3,12 +3,16 @@ import { Activity, ArrowLeft, BarChart3, Database, Image as ImageIcon, Video, Pa
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { getUsageStats, subscribeToUsage } from './accountData';
+import { MODELS } from './Chat';
 import './AccountPages.css';
 
 export default function SettingsView({ auth, theme, setTheme }) {
   const navigate = useNavigate();
   const containerRef = useRef(null);
   const [stats, setStats] = useState(() => getUsageStats(auth));
+  const [selectedModelId, setSelectedModelId] = useState(() => {
+    return localStorage.getItem('ps_selected_model') || MODELS[0].id;
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -128,7 +132,35 @@ export default function SettingsView({ auth, theme, setTheme }) {
             </div>
           </section>
 
-          <section className="account-panel stagger-item">
+          <section className="account-panel stagger-item" style={{ marginTop: 24 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+              <Database size={24} color="var(--accent-gold)" />
+              <h2 style={{ marginBottom: 0 }}>AI Intelligence Model</h2>
+            </div>
+            <p>Select your default core engine for chat interactions. This overrides the local dropdown.</p>
+            
+            <div className="usage-list" style={{ marginTop: 20 }}>
+              {MODELS.map(m => (
+                <div 
+                  key={m.id} 
+                  className="usage-row" 
+                  style={{ cursor: 'pointer', border: selectedModelId === m.id ? '1px solid var(--accent-gold)' : 'none', background: selectedModelId === m.id ? 'rgba(255,255,255,0.05)' : 'transparent', borderRadius: '12px', padding: '12px 16px' }}
+                  onClick={() => {
+                    setSelectedModelId(m.id);
+                    localStorage.setItem('ps_selected_model', m.id);
+                  }}
+                >
+                  <div>
+                    <strong style={{ color: selectedModelId === m.id ? 'var(--accent-gold)' : 'var(--text-primary)' }}>{m.name}</strong>
+                    <span>{m.id}</span>
+                  </div>
+                  {selectedModelId === m.id && <span className="usage-pill">Active Default</span>}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="account-panel stagger-item" style={{ marginTop: 24 }}>
             <h2>Usage breakdown</h2>
             <p>{stats.usageSummary}</p>
             <div className="usage-list">

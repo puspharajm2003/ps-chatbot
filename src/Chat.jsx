@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { getUsageStats, recordUsageEvent } from './accountData';
 import './App.css';
 
-const MODELS = [
-  { id: 'google/gemma-2-9b-it:free', name: 'PS Standard Intelligence' },
+export const MODELS = [
+  { id: 'google/gemma-7b-it:free', name: 'PS Standard Intelligence' },
   { id: 'meta-llama/llama-3.1-8b-instruct:free', name: 'PS Advanced Intelligence' },
   { id: 'ps-core', name: 'PS Core v2' },
   { id: 'ps-vision', name: 'PS Vision (Images)' },
@@ -30,7 +30,15 @@ export default function Chat({ auth, setAuth }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [openRouterKey] = useState(auth?.api_key || localStorage.getItem('openRouterKey') || '');
   const [toolsOpen, setToolsOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState(MODELS[0]);
+  const [selectedModel, setSelectedModel] = useState(() => {
+    const saved = localStorage.getItem('ps_selected_model');
+    return MODELS.find(m => m.id === saved) || MODELS[0];
+  });
+  
+  // Keep localStorage updated when model changes from dropdown inside Chat
+  useEffect(() => {
+    localStorage.setItem('ps_selected_model', selectedModel.id);
+  }, [selectedModel]);
   const [selectedPersonality, setSelectedPersonality] = useState(PERSONALITIES[2]);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
