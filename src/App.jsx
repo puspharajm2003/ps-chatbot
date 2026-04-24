@@ -10,8 +10,12 @@ import './App.css';
 
 export default function App() {
   const [auth, setAuth] = useState(() => {
-    const saved = localStorage.getItem('ps_auth');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem('ps_auth');
+      return saved && saved !== 'undefined' ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
   });
 
   useEffect(() => {
