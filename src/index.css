@@ -31,13 +31,49 @@
 }
 
 /* Theme Sets */
-body.theme-1 { --bg-primary: #5B0E14; --accent-gold: #F1E194; --accent-glow: rgba(241, 225, 148, 0.3); --bg-glass: rgba(91, 14, 20, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
-body.theme-2 { --bg-primary: #233D4C; --accent-gold: #FD802E; --accent-glow: rgba(253, 128, 46, 0.3); --bg-glass: rgba(35, 61, 76, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
-body.theme-3 { --bg-primary: #CBDDE9; --accent-gold: #2872A1; --accent-glow: rgba(40, 114, 161, 0.3); --bg-glass: rgba(203, 221, 233, 0.6); --text-primary: #0f172a; --text-secondary: #334155; --text-tertiary: #475569; --border-light: rgba(0, 0, 0, 0.1); }
-body.theme-4 { --bg-primary: #1A2517; --accent-gold: #ACC8A2; --accent-glow: rgba(172, 200, 162, 0.3); --bg-glass: rgba(26, 37, 23, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
-body.theme-5 { --bg-primary: #1F2140; --accent-gold: #7C83FF; --accent-glow: rgba(124, 131, 255, 0.3); --bg-glass: rgba(31, 33, 64, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
-body.theme-6 { --bg-primary: #2F2F33; --accent-gold: #F5F6F7; --accent-glow: rgba(245, 246, 247, 0.3); --bg-glass: rgba(47, 47, 51, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
-body.theme-7 { --bg-primary: #003F3A; --accent-gold: #A4F000; --accent-glow: rgba(164, 240, 0, 0.3); --bg-glass: rgba(0, 63, 58, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
+body.theme-1 { 
+  --bg-primary: #5B0E14; --bg-secondary: #4A0B10; --bg-tertiary: #3A090D; 
+  --bg-glass: rgba(91, 14, 20, 0.5); --bg-glass-heavy: rgba(91, 14, 20, 0.85);
+  --accent-gold: #F1E194; --accent-glow: rgba(241, 225, 148, 0.3);
+  --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); 
+}
+body.theme-2 { 
+  --bg-primary: #233D4C; --bg-secondary: #1C313D; --bg-tertiary: #15252E;
+  --bg-glass: rgba(35, 61, 76, 0.5); --bg-glass-heavy: rgba(35, 61, 76, 0.85);
+  --accent-gold: #FD802E; --accent-glow: rgba(253, 128, 46, 0.3);
+  --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); 
+}
+body.theme-3 { 
+  --bg-primary: #CBDDE9; --bg-secondary: #B9CDE0; --bg-tertiary: #A6BDD7;
+  --bg-glass: rgba(203, 221, 233, 0.5); --bg-glass-heavy: rgba(203, 221, 233, 0.85);
+  --accent-gold: #2872A1; --accent-glow: rgba(40, 114, 161, 0.3);
+  --text-primary: #0f172a; --text-secondary: #334155; --text-tertiary: #475569; 
+  --border-light: rgba(0, 0, 0, 0.1); 
+}
+body.theme-4 { 
+  --bg-primary: #1A2517; --bg-secondary: #131B10; --bg-tertiary: #0C1209;
+  --bg-glass: rgba(26, 37, 23, 0.5); --bg-glass-heavy: rgba(26, 37, 23, 0.85);
+  --accent-gold: #ACC8A2; --accent-glow: rgba(172, 200, 162, 0.3);
+  --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); 
+}
+body.theme-5 { 
+  --bg-primary: #1F2140; --bg-secondary: #181933; --bg-tertiary: #111226;
+  --bg-glass: rgba(31, 33, 64, 0.5); --bg-glass-heavy: rgba(31, 33, 64, 0.85);
+  --accent-gold: #7C83FF; --accent-glow: rgba(124, 131, 255, 0.3);
+  --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); 
+}
+body.theme-6 { 
+  --bg-primary: #2F2F33; --bg-secondary: #252529; --bg-tertiary: #1C1C1F;
+  --bg-glass: rgba(47, 47, 51, 0.5); --bg-glass-heavy: rgba(47, 47, 51, 0.85);
+  --accent-gold: #F5F6F7; --accent-glow: rgba(245, 246, 247, 0.3);
+  --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); 
+}
+body.theme-7 { 
+  --bg-primary: #003F3A; --bg-secondary: #00322E; --bg-tertiary: #002623;
+  --bg-glass: rgba(0, 63, 58, 0.5); --bg-glass-heavy: rgba(0, 63, 58, 0.85);
+  --accent-gold: #A4F000; --accent-glow: rgba(164, 240, 0, 0.3);
+  --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); 
+}
 
 
 

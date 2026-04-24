@@ -161,8 +161,8 @@
 }
 
 .user-dropup-item:hover {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: rgba(212, 175, 55, 0.18);
+  background: var(--bg-secondary);
+  border-color: var(--border-glow);
   color: var(--accent-gold);
 }
 
@@ -214,7 +214,7 @@
   min-width: 66px;
   padding: 6px 10px;
   border-radius: var(--radius-full);
-  background: rgba(212, 175, 55, 0.12);
+  background: var(--accent-glow);
   color: var(--accent-gold) !important;
   font-size: 12px !important;
   font-weight: 700;
@@ -374,8 +374,8 @@
 }
 
 .message.ai .message-avatar {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: var(--accent-glow);
+  border: 1px solid var(--border-glow);
   color: var(--accent-gold);
 }
 
@@ -388,6 +388,8 @@
   color: var(--text-primary);
   border: 1px solid var(--border-light);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .message.user .message-content {
@@ -396,8 +398,8 @@
 }
 
 .message.ai .message-content {
-  background: rgba(212, 175, 55, 0.02);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glow);
   border-radius: 24px 24px 24px 4px;
 }
 
