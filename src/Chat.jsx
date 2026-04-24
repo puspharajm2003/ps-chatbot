@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   BarChart3, Briefcase, Check, ChevronDown, Code, Command, CreditCard, FileCode, Image as ImageIcon,
-  Maximize2, Menu, Send, Settings, Smile, Sparkles, User, Video, Wand2, Crown,
+  Maximize2, Menu, Send, Settings, Smile, Sparkles, User, Video, Wand2, Crown, LogOut,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { getUsageStats, recordUsageEvent } from './accountData';
@@ -229,10 +229,9 @@ export default function Chat({ auth }) {
                 >
                   <div className="user-dropup-header">
                     <div>
-                      <strong>{auth?.name || 'Guest User'}</strong>
-                      <span>{usageStats.plan}</span>
+                      <strong style={{ fontSize: '16px', color: '#fff' }}>{auth?.name || 'Guest User'}</strong>
+                      <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>{auth?.type === 'premium' ? 'Premium Access' : 'Temp Chat'}</span>
                     </div>
-                    <span className="usage-pill">{usageStats.usageSummary}</span>
                   </div>
 
                   <button className="user-dropup-item" onClick={() => { setUserMenuOpen(false); navigate('/profile'); }}>
@@ -248,21 +247,20 @@ export default function Chat({ auth }) {
                     <span>Setting</span>
                   </button>
 
-                  <div className="user-dropup-usage">
-                    <div className="user-dropup-usage-title">
-                      <BarChart3 size={15} />
-                      <span>Usage</span>
-                    </div>
-                    {usageStats.metrics.map((metric) => (
-                      <div key={metric.label} className="user-dropup-usage-row">
-                        <div>
-                          <strong>{metric.label}</strong>
-                          <span>{metric.note}</span>
-                        </div>
-                        <span className="usage-pill">{metric.usage}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <div className="user-dropup-divider" style={{ height: '1px', background: 'var(--border-light)', margin: '8px 0' }}></div>
+
+                  <button 
+                    className="user-dropup-item" 
+                    onClick={() => { 
+                      setUserMenuOpen(false); 
+                      setAuth(null); 
+                      navigate('/'); 
+                    }}
+                    style={{ color: '#ef4444' }}
+                  >
+                    <LogOut size={16} />
+                    <span>Sign out</span>
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
