@@ -56,7 +56,7 @@ export default function Background3D() {
   }
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, background: 'radial-gradient(circle at center, #111 0%, #050505 100%)' }}>
+    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, background: 'transparent' }}>
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
         <ParticleSwarm />
         <ambientLight intensity={0.5} />

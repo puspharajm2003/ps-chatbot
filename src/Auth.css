@@ -2,7 +2,7 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background: #111114;
+  background: transparent;
   overflow: hidden;
   font-family: var(--font-family);
   color: white;
@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(circle at center, #ffffff 0%, #eff3fb 55%, #dde3f0 100%);
+  background: transparent;
 }
 
 .auth-hero-content {
@@ -72,14 +72,15 @@
 
 .auth-right-panel {
   width: 500px;
-  background: #23252a;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
   z-index: 10;
-  border-left: 1px solid rgba(255,255,255,0.05);
-  box-shadow: -20px 0 50px rgba(0,0,0,0.5);
+  border-left: 1px solid rgba(255,255,255,0.1);
+  box-shadow: -20px 0 50px rgba(0,0,0,0.2);
 }
 
 .auth-form-wrapper {
@@ -250,6 +251,6 @@
 
   .auth-right-panel {
     width: 100%;
-    background: radial-gradient(circle at center, #1a1a24 0%, #050505 100%);
+    background: transparent;
   }
 }

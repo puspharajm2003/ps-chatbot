@@ -1,22 +1,22 @@
 :root {
   /* Core Colors */
-  --bg-primary: #09090b;
-  --bg-secondary: #18181b;
-  --bg-tertiary: #27272a;
-  --bg-glass: rgba(24, 24, 27, 0.6);
-  --bg-glass-heavy: rgba(24, 24, 27, 0.85);
+  --bg-primary: #0a0a1a;
+  --bg-secondary: rgba(255, 255, 255, 0.03);
+  --bg-tertiary: rgba(255, 255, 255, 0.05);
+  --bg-glass: rgba(20, 20, 35, 0.5);
+  --bg-glass-heavy: rgba(10, 10, 20, 0.8);
 
-  --accent-gold: #FFDF73;
-  --accent-gold-light: #FFF2C2;
-  --accent-gold-dark: #ccab42;
-  --accent-glow: rgba(255, 223, 115, 0.15);
+  --accent-gold: #00f2fe;
+  --accent-gold-light: #4facfe;
+  --accent-gold-dark: #0088cc;
+  --accent-glow: rgba(0, 242, 254, 0.3);
 
   --text-primary: #ffffff;
-  --text-secondary: #e4e4e7;
-  --text-tertiary: #a1a1aa;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #94a3b8;
   
-  --border-light: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(255, 223, 115, 0.3);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(0, 242, 254, 0.4);
 
   /* Typography */
   --font-family: 'Outfit', sans-serif;
@@ -40,13 +40,18 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-primary);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
   color: var(--text-primary);
   min-height: 100vh;
   overflow: hidden;
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.03), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.04), transparent 25%);
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 #root {

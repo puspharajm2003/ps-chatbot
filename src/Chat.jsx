@@ -23,7 +23,7 @@ const PERSONALITIES = [
   { id: 'humorous', name: 'Humorous', icon: Smile },
 ];
 
-export default function Chat({ auth }) {
+export default function Chat({ auth, setAuth }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
   const [personalityDropdownOpen, setPersonalityDropdownOpen] = useState(false);
