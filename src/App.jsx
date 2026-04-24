@@ -19,6 +19,15 @@ export default function App() {
     }
   });
 
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('ps_theme') || 'theme-5';
+  });
+
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem('ps_theme', theme);
+  }, [theme]);
+
   useEffect(() => {
     if (auth) {
       localStorage.setItem('ps_auth', JSON.stringify(auth));
@@ -34,7 +43,7 @@ export default function App() {
         <Route path="/" element={!auth ? <Auth setAuth={setAuth} /> : <Navigate to="/chat" />} />
         <Route path="/chat" element={auth ? <Chat auth={auth} setAuth={setAuth} /> : <Navigate to="/" />} />
         <Route path="/profile" element={auth ? <Profile auth={auth} setAuth={setAuth} /> : <Navigate to="/" />} />
-        <Route path="/settings" element={auth ? <SettingsView auth={auth} /> : <Navigate to="/" />} />
+        <Route path="/settings" element={auth ? <SettingsView auth={auth} theme={theme} setTheme={setTheme} /> : <Navigate to="/" />} />
         <Route path="/subscription" element={auth ? <SubscriptionView auth={auth} /> : <Navigate to="/" />} />
       </Routes>
       {auth && <BottomNav />}

@@ -1,22 +1,21 @@
 :root {
-  /* Core Colors */
-  --bg-primary: #0a0a1a;
-  --bg-secondary: rgba(255, 255, 255, 0.03);
-  --bg-tertiary: rgba(255, 255, 255, 0.05);
-  --bg-glass: rgba(20, 20, 35, 0.5);
-  --bg-glass-heavy: rgba(10, 10, 20, 0.8);
+  /* Default Theme (Set 5) */
+  --bg-primary: #1F2140;
+  --bg-secondary: rgba(0, 0, 0, 0.2);
+  --bg-tertiary: rgba(0, 0, 0, 0.3);
+  --bg-glass: rgba(31, 33, 64, 0.6);
+  --bg-glass-heavy: rgba(31, 33, 64, 0.85);
 
-  --accent-gold: #00f2fe;
-  --accent-gold-light: #4facfe;
-  --accent-gold-dark: #0088cc;
-  --accent-glow: rgba(0, 242, 254, 0.3);
+  --accent-gold: #7C83FF;
+  --accent-gold-light: #9ea4ff;
+  --accent-glow: rgba(124, 131, 255, 0.3);
 
   --text-primary: #ffffff;
-  --text-secondary: #e2e8f0;
-  --text-tertiary: #94a3b8;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
   
   --border-light: rgba(255, 255, 255, 0.1);
-  --border-glow: rgba(0, 242, 254, 0.4);
+  --border-glow: rgba(124, 131, 255, 0.4);
 
   /* Typography */
   --font-family: 'Outfit', sans-serif;
@@ -27,9 +26,21 @@
   --radius-lg: 24px;
   --radius-full: 9999px;
   
-  --shadow-gold: 0 4px 30px rgba(212, 175, 55, 0.1);
+  --shadow-gold: 0 4px 30px var(--accent-glow);
   --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
+
+/* Theme Sets */
+body.theme-1 { --bg-primary: #5B0E14; --accent-gold: #F1E194; --accent-glow: rgba(241, 225, 148, 0.3); --bg-glass: rgba(91, 14, 20, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
+body.theme-2 { --bg-primary: #233D4C; --accent-gold: #FD802E; --accent-glow: rgba(253, 128, 46, 0.3); --bg-glass: rgba(35, 61, 76, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
+body.theme-3 { --bg-primary: #CBDDE9; --accent-gold: #2872A1; --accent-glow: rgba(40, 114, 161, 0.3); --bg-glass: rgba(203, 221, 233, 0.6); --text-primary: #0f172a; --text-secondary: #334155; --text-tertiary: #475569; --border-light: rgba(0, 0, 0, 0.1); }
+body.theme-4 { --bg-primary: #1A2517; --accent-gold: #ACC8A2; --accent-glow: rgba(172, 200, 162, 0.3); --bg-glass: rgba(26, 37, 23, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
+body.theme-5 { --bg-primary: #1F2140; --accent-gold: #7C83FF; --accent-glow: rgba(124, 131, 255, 0.3); --bg-glass: rgba(31, 33, 64, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
+body.theme-6 { --bg-primary: #2F2F33; --accent-gold: #F5F6F7; --accent-glow: rgba(245, 246, 247, 0.3); --bg-glass: rgba(47, 47, 51, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
+body.theme-7 { --bg-primary: #003F3A; --accent-gold: #A4F000; --accent-glow: rgba(164, 240, 0, 0.3); --bg-glass: rgba(0, 63, 58, 0.6); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.8); }
+
+
+
 
 * {
   box-sizing: border-box;
@@ -40,18 +51,11 @@
 
 body {
   font-family: var(--font-family);
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
   overflow: hidden;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 #root {

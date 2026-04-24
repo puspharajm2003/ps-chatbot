@@ -2,10 +2,10 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background: transparent;
+  background-color: #2C666E;
   overflow: hidden;
   font-family: var(--font-family);
-  color: white;
+  color: #F0EDEE;
 }
 
 .auth-left-panel {
@@ -47,7 +47,7 @@
 }
 
 .hero-title-fg {
-  color: #0f1e33;
+  color: #F0EDEE;
   top: 57%;
   right: 10%;
   z-index: 1;
@@ -119,11 +119,11 @@
 .premium-form input[type='email'],
 .premium-form input[type='password'] {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(240, 237, 238, 0.05);
+  border: 1px solid rgba(240, 237, 238, 0.1);
   padding: 16px 20px;
   border-radius: 12px;
-  color: white;
+  color: #F0EDEE;
   font-size: 15px;
   outline: none;
   transition: border-color 0.3s;
@@ -199,7 +199,8 @@
 }
 
 .social-btn:hover {
-  background: rgba(255,255,255,0.1);
+  background: #F0EDEE;
+  color: #2C666E;
 }
 
 .form-footer {
@@ -222,8 +223,8 @@
 }
 
 .submit-btn {
-  background: #fff;
-  color: #000;
+  background: #F0EDEE;
+  color: #2C666E;
   padding: 12px 24px;
   border-radius: 30px;
   font-size: 15px;
