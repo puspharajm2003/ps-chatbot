@@ -106,17 +106,23 @@ export default function Chat({ auth, setAuth }) {
       content: '',
     };
 
-    if (selectedModel.id === 'ps-vision' || lowerInput.includes('image') || lowerInput.includes('picture')) {
+    if (selectedModel.id === 'ps-vision' || lowerInput.includes('image') || lowerInput.includes('picture') || lowerInput.includes('generate a')) {
+      const seed = Math.floor(Math.random() * 1000000);
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(newMsg.content)}?width=1024&height=1024&nologo=true&enhance=true&seed=${seed}`;
+
       setTimeout(() => {
-        aiResponse.content = 'Image requests are now tracked as real usage only. Connect a live image-generation provider to return actual renders instead of demo placeholders.';
+        aiResponse.content = `Here is your freshly rendered high-fidelity image based on your request.`;
+        aiResponse.type = 'image';
+        aiResponse.mediaUrl = imageUrl;
+        
         recordUsageEvent({
           type: 'image',
           prompt: newMsg.content,
-          detail: 'Image generation',
+          detail: 'Professional image generated',
         });
         setMessages((prev) => [...prev, aiResponse]);
         setIsTyping(false);
-      }, 1500);
+      }, 2000);
       return;
     }
 
