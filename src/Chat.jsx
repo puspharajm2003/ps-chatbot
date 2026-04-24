@@ -4,8 +4,8 @@ import {
   BarChart3, Briefcase, Check, ChevronDown, Code, Command, CreditCard, FileCode, Image as ImageIcon,
   Maximize2, Menu, Send, Settings, Smile, Sparkles, User, Video, Wand2, Crown,
 } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getUsageStats } from './accountData';
+import { useNavigate } from 'react-router-dom';
+import { getUsageStats, recordUsageEvent } from './accountData';
 import './App.css';
 
 const MODELS = [
@@ -44,7 +44,6 @@ export default function Chat({ auth }) {
   const [isTyping, setIsTyping] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
   const usageStats = getUsageStats(auth);
   const messagesEndRef = useRef(null);
   const userMenuRef = useRef(null);
@@ -63,10 +62,6 @@ export default function Chat({ auth }) {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  useEffect(() => {
-    setUserMenuOpen(false);
-  }, [location.pathname]);
 
   const handleToolSelect = (tool) => {
     setToolsOpen(false);
@@ -87,6 +82,11 @@ export default function Chat({ auth }) {
 
     const newMessages = [...messages, newMsg];
     setMessages(newMessages);
+    recordUsageEvent({
+      type: 'message',
+      prompt: newMsg.content,
+      detail: 'Chat prompt',
+    });
     setInput('');
     setIsTyping(true);
 
@@ -100,9 +100,12 @@ export default function Chat({ auth }) {
 
     if (selectedModel.id === 'ps-vision' || lowerInput.includes('image') || lowerInput.includes('picture')) {
       setTimeout(() => {
-        aiResponse.content = 'Here is the image you requested. The prompt has been enhanced for maximum aesthetic quality.';
-        aiResponse.type = 'image';
-        aiResponse.mediaUrl = 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop';
+        aiResponse.content = 'Image requests are now tracked as real usage only. Connect a live image-generation provider to return actual renders instead of demo placeholders.';
+        recordUsageEvent({
+          type: 'image',
+          prompt: newMsg.content,
+          detail: 'Image generation',
+        });
         setMessages((prev) => [...prev, aiResponse]);
         setIsTyping(false);
       }, 1500);
@@ -111,9 +114,12 @@ export default function Chat({ auth }) {
 
     if (selectedModel.id === 'ps-motion' || lowerInput.includes('video') || lowerInput.includes('motion')) {
       setTimeout(() => {
-        aiResponse.content = 'I have generated the video sequence based on your parameters. The cinematic rendering is complete.';
-        aiResponse.type = 'video';
-        aiResponse.mediaUrl = 'https://cdn.coverr.co/videos/coverr-a-person-working-on-a-laptop-5254/1080p.mp4';
+        aiResponse.content = 'Video requests are now tracked from your real activity. Add a live video backend before returning generated clips, so the app no longer shows demo footage.';
+        recordUsageEvent({
+          type: 'video',
+          prompt: newMsg.content,
+          detail: 'Video generation',
+        });
         setMessages((prev) => [...prev, aiResponse]);
         setIsTyping(false);
       }, 1500);
@@ -122,9 +128,12 @@ export default function Chat({ auth }) {
 
     if (lowerInput.includes('code') || lowerInput.includes('script') || lowerInput.startsWith('/script')) {
       setTimeout(() => {
-        aiResponse.content = 'Here is the optimized script you requested. I have ensured robust error handling and adherence to best practices.';
-        aiResponse.type = 'code';
-        aiResponse.code = `function generateLuxuriousExperience(user) {\n  const config = {\n    theme: 'dark-gold',\n    animations: 'smooth',\n    model: 'PS Core v2'\n  };\n  \n  if (user.preferences.premium) {\n    return initIntelligence(user, config);\n  }\n  \n  return standardResponse();\n}`;
+        aiResponse.content = 'Code requests are logged as real usage, but the old sample snippet has been removed. Use a connected coding model to generate live code responses here.';
+        recordUsageEvent({
+          type: 'code',
+          prompt: newMsg.content,
+          detail: 'Code generation',
+        });
         setMessages((prev) => [...prev, aiResponse]);
         setIsTyping(false);
       }, 1500);
@@ -132,8 +141,11 @@ export default function Chat({ auth }) {
     }
 
     if (selectedModel.id.includes('/')) {
-      if (!openRouterKey) {
-        aiResponse.content = 'Please enter your OpenRouter API Key in the settings to use this model.';
+      // Get the freshest key right before making the request
+      const currentKey = auth?.api_key || localStorage.getItem('openRouterKey') || '';
+      
+      if (!currentKey || currentKey === 'undefined' || currentKey === 'null') {
+        aiResponse.content = 'Please enter a valid OpenRouter API Key in your Profile settings to use this model.';
         setMessages((prev) => [...prev, aiResponse]);
         setIsTyping(false);
         return;
@@ -143,7 +155,7 @@ export default function Chat({ auth }) {
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${openRouterKey}`,
+            'Authorization': `Bearer ${currentKey}`,
             'Content-Type': 'application/json',
             'HTTP-Referer': window.location.href,
             'X-Title': 'PS Chatbot',
@@ -223,15 +235,15 @@ export default function Chat({ auth }) {
                     <span className="usage-pill">{usageStats.usageSummary}</span>
                   </div>
 
-                  <button className="user-dropup-item" onClick={() => navigate('/profile')}>
+                  <button className="user-dropup-item" onClick={() => { setUserMenuOpen(false); navigate('/profile'); }}>
                     <User size={16} />
                     <span>Profile</span>
                   </button>
-                  <button className="user-dropup-item" onClick={() => navigate('/subscription')}>
+                  <button className="user-dropup-item" onClick={() => { setUserMenuOpen(false); navigate('/subscription'); }}>
                     <CreditCard size={16} />
                     <span>Subscription</span>
                   </button>
-                  <button className="user-dropup-item" onClick={() => navigate('/settings')}>
+                  <button className="user-dropup-item" onClick={() => { setUserMenuOpen(false); navigate('/settings'); }}>
                     <Settings size={16} />
                     <span>Setting</span>
                   </button>

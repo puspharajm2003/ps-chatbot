@@ -156,7 +156,7 @@ export default function Profile({ auth, setAuth }) {
 
           <aside className="account-panel prof-anim">
             <h2>Account summary</h2>
-            <p>{stats.plan} · {stats.renewal}</p>
+            <p>{stats.plan} / {stats.renewal}</p>
             <div className="account-summary-list">
               {stats.usageRows.map((row) => (
                 <div key={row.label} className="account-summary-item">
