@@ -40,7 +40,7 @@
 
 .hero-title-bg {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(13, 31, 52, 0.12);
+  -webkit-text-stroke: 1px rgba(240, 237, 238, 0.2);
   top: 22%;
   left: 10%;
   z-index: 1;
@@ -119,8 +119,8 @@
 .premium-form input[type='email'],
 .premium-form input[type='password'] {
   width: 100%;
-  background: rgba(240, 237, 238, 0.05);
-  border: 1px solid rgba(240, 237, 238, 0.1);
+  background: rgba(240, 237, 238, 0.15);
+  border: 1px solid rgba(240, 237, 238, 0.3);
   padding: 16px 20px;
   border-radius: 12px;
   color: #F0EDEE;
@@ -129,8 +129,13 @@
   transition: border-color 0.3s;
 }
 
+.premium-form input::placeholder {
+  color: rgba(240, 237, 238, 0.6);
+}
+
 .premium-form input:focus {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(240, 237, 238, 0.7);
+  background: rgba(240, 237, 238, 0.2);
 }
 
 .terms-checkbox {
@@ -138,7 +143,7 @@
   align-items: center;
   gap: 12px;
   font-size: 13px;
-  color: #a1a1aa;
+  color: rgba(240, 237, 238, 0.8);
   margin-top: 8px;
   cursor: pointer;
 }
@@ -211,13 +216,13 @@
 
 .toggle-auth {
   font-size: 13px;
-  color: #a1a1aa;
+  color: rgba(240, 237, 238, 0.8);
 }
 
 .toggle-btn {
   background: none;
   border: none;
-  color: #fff;
+  color: #F0EDEE;
   font-weight: 500;
   cursor: pointer;
 }

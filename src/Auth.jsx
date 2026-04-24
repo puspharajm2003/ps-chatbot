@@ -129,17 +129,7 @@ export default function Auth({ setAuth }) {
               </label>
             )}
 
-            <div className="divider">
-              <span>Or<br />{isLogin ? 'Login' : 'Sign up'} with</span>
-            </div>
-
-            <div className="social-logins">
-              <button type="button" className="social-btn"><Google size={20} /></button>
-              <button type="button" className="social-btn"><Apple size={20} /></button>
-              <button type="button" className="social-btn"><FacebookIcon size={20} /></button>
-            </div>
-
-            <div className="form-footer">
+            <div className="form-footer" style={{ marginTop: '24px' }}>
               <span className="toggle-auth">
                 {isLogin ? "Don't have an account? " : 'Already have an account? '}
                 <button type="button" className="toggle-btn" onClick={() => setIsLogin(!isLogin)}>
